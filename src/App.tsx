@@ -60,6 +60,10 @@ function App() {
     })),
   ]);
 
+  function onClickHandler(uniqueKey: string) {
+    console.log(`Card Pressed: ${uniqueKey}`);
+  }
+
   return (
     <>
       <main className="min-h-screen flex flex-col items-center justify-start overflow-y-auto">
@@ -78,7 +82,7 @@ function App() {
                 imgSrc={card.imgSrc}
                 isFlipped={card.isFlipped}
                 isMatched={card.isMatched}
-                onClick={card.onClick}
+                onClick={() => onClickHandler(card.uniqueKey!)}
               />
             ))}
           </div>
