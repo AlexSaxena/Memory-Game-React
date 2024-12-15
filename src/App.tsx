@@ -15,7 +15,7 @@ function App() {
           >
             <CardComponent
               cardId={1}
-              imgSrc="https://picsum.photos/200"
+              imgSrc="/house.jpg"
               isFlipped={true}
               isMatched={false}
               onClick={() => {
@@ -25,8 +25,8 @@ function App() {
 
             <CardComponent
               cardId={2}
-              imgSrc="Image"
-              isFlipped={false}
+              imgSrc="/space.jpg"
+              isFlipped={true}
               isMatched={false}
               onClick={() => {
                 console.log("Card Pressed with ID -> ", 2);
@@ -35,8 +35,8 @@ function App() {
 
             <CardComponent
               cardId={3}
-              imgSrc="Image"
-              isFlipped={false}
+              imgSrc="/space_pod.jpg"
+              isFlipped={true}
               isMatched={false}
               onClick={() => {
                 console.log("Card Pressed with ID -> ", 3);
