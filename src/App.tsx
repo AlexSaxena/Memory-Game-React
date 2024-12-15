@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 import CardComponent from "./components/CardComponent";
 
@@ -61,8 +62,16 @@ function App() {
   ]);
 
   function onClickHandler(uniqueKey: string) {
-    console.log(`Card Pressed: ${uniqueKey}`);
+    setCards((prevCards: Card[]) =>
+      prevCards.map((card) =>
+        card.uniqueKey === uniqueKey
+          ? { ...card, isFlipped: !card.isFlipped }
+          : card
+      )
+    );
   }
+
+  const [cards, setCards] = useState<Card[]>(shuffledArray);
 
   return (
     <>
@@ -75,7 +84,7 @@ function App() {
             id="Card-Container"
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center"
           >
-            {shuffledArray.map((card) => (
+            {cards.map((card) => (
               <CardComponent
                 key={card.uniqueKey}
                 cardId={card.cardId}
