@@ -16,7 +16,7 @@ function App() {
     {
       cardId: 1,
       imgSrc: "/house.jpg",
-      isFlipped: true,
+      isFlipped: false,
       isMatched: false,
       onClick: () => {
         console.log("Card Pressed 1");
@@ -25,7 +25,7 @@ function App() {
     {
       cardId: 2,
       imgSrc: "/space.jpg",
-      isFlipped: true,
+      isFlipped: false,
       isMatched: false,
       onClick: () => {
         console.log("Card Pressed 2");
@@ -34,7 +34,7 @@ function App() {
     {
       cardId: 3,
       imgSrc: "/space_pod.jpg",
-      isFlipped: true,
+      isFlipped: false,
       isMatched: false,
       onClick: () => {
         console.log("Card Pressed 3");
@@ -62,16 +62,53 @@ function App() {
   ]);
 
   function onClickHandler(uniqueKey: string) {
-    setCards((prevCards: Card[]) =>
+    if (flippedCards.length === 2) return;
+
+    setFlippedCards((prev) => [...prev, uniqueKey]);
+
+    setCards((prevCards) =>
       prevCards.map((card) =>
-        card.uniqueKey === uniqueKey
-          ? { ...card, isFlipped: !card.isFlipped }
-          : card
+        card.uniqueKey === uniqueKey ? { ...card, isFlipped: true } : card
       )
     );
+
+    if (flippedCards.length === 1) {
+      const firstCardKey = flippedCards[0];
+      const secondCardKey = uniqueKey;
+
+      const firstCard = cards.find((card) => card.uniqueKey === firstCardKey);
+      const secondCard = cards.find((card) => card.uniqueKey === secondCardKey);
+
+      if (firstCard && secondCard) {
+        if (firstCard.cardId === secondCard.cardId) {
+          setCards((prevCards) =>
+            prevCards.map((card) =>
+              card.uniqueKey === firstCardKey ||
+              card.uniqueKey === secondCardKey
+                ? { ...card, isMatched: true }
+                : card
+            )
+          );
+        } else {
+          setTimeout(() => {
+            setCards((prevCards) =>
+              prevCards.map((card) =>
+                card.uniqueKey === firstCardKey ||
+                card.uniqueKey === secondCardKey
+                  ? { ...card, isFlipped: false }
+                  : card
+              )
+            );
+          }, 1000);
+        }
+      }
+
+      setFlippedCards([]);
+    }
   }
 
   const [cards, setCards] = useState<Card[]>(shuffledArray);
+  const [flippedCards, setFlippedCards] = useState<string[]>([]);
 
   return (
     <>
