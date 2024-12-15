@@ -1,12 +1,20 @@
 import "./App.css";
-import CardComponent from "./components/cardComponent";
+import CardComponent from "./components/CardComponent";
 
 function App() {
   return (
     <>
       <h1 className="text-orange-600">Memory Game!</h1>
-      <div className="p-5">
-        <CardComponent />
+      <div id="Card-Container" className="p-5">
+        <CardComponent
+          cardId={2}
+          imgSrc="d"
+          isFlipped={false}
+          isMatched={false}
+          onClick={() => {
+            console.log("Card Pressed");
+          }}
+        />
       </div>
     </>
   );
