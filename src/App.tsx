@@ -49,8 +49,14 @@ function App() {
   };
 
   const shuffledArray = shuffleArray([
-    ...cardContentArray,
-    ...cardContentArray,
+    ...cardContentArray.map((card, index) => ({
+      ...card,
+      uniqueKey: `${card.cardId}-${index}-1`,
+    })),
+    ...cardContentArray.map((card, index) => ({
+      ...card,
+      uniqueKey: `${card.cardId}-${index}-2`,
+    })),
   ]);
 
   return (
