@@ -7,6 +7,7 @@ function App() {
     imgSrc: string;
     isFlipped: boolean;
     isMatched: boolean;
+    uniqueKey?: string;
     onClick: () => void;
   };
 
@@ -70,18 +71,16 @@ function App() {
             id="Card-Container"
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center"
           >
-            {shuffledArray.map((card, index) => {
-              return (
-                <CardComponent
-                  key={index}
-                  cardId={card.cardId}
-                  imgSrc={card.imgSrc}
-                  isFlipped={card.isFlipped}
-                  isMatched={card.isMatched}
-                  onClick={card.onClick}
-                />
-              );
-            })}
+            {shuffledArray.map((card) => (
+              <CardComponent
+                key={card.uniqueKey}
+                cardId={card.cardId}
+                imgSrc={card.imgSrc}
+                isFlipped={card.isFlipped}
+                isMatched={card.isMatched}
+                onClick={card.onClick}
+              />
+            ))}
           </div>
         </div>
       </main>
