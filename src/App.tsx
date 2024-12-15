@@ -9,7 +9,7 @@ function App() {
       isFlipped: true,
       isMatched: false,
       onClick: () => {
-        console.log("Card Pressed ");
+        console.log("Card Pressed 1");
       },
     },
     {
@@ -18,7 +18,7 @@ function App() {
       isFlipped: true,
       isMatched: false,
       onClick: () => {
-        console.log("Card Pressed ");
+        console.log("Card Pressed 2");
       },
     },
     {
@@ -27,10 +27,23 @@ function App() {
       isFlipped: true,
       isMatched: false,
       onClick: () => {
-        console.log("Card Pressed ");
+        console.log("Card Pressed 3");
       },
     },
   ];
+
+  const shuffleArray = (array: Array<object>) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+
+  const shuffledArray = shuffleArray([
+    ...cardContentArray,
+    ...cardContentArray,
+  ]);
 
   return (
     <>
@@ -43,10 +56,10 @@ function App() {
             id="Card-Container"
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center"
           >
-            {cardContentArray.map((card) => {
+            {shuffledArray.map((card, index) => {
               return (
                 <CardComponent
-                  key={card.cardId}
+                  key={index}
                   cardId={card.cardId}
                   imgSrc={card.imgSrc}
                   isFlipped={card.isFlipped}
