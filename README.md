@@ -1,50 +1,49 @@
-# React + TypeScript + Vite
+# Memory Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fun and simple memory card matching game built with React and TypeScript.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The Memory Game challenges players to match pairs of cards by flipping them over. It features randomized cards, match detection.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Flip cards to reveal their images.
+- Match pairs of cards based on their images.
+- Cards that don't match automatically flip back after a short delay.
+- Prevents flipping more than two cards at a time.
 
-- Configure the top-level `parserOptions` property like this:
+## Technologies Used
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
+- **React**: For building the user interface.
+- **TypeScript**: For type-safe and scalable development.
+- **Tailwind CSS**: For simple and responsive styling.
+
+## Getting Started
+
+### Clone the Repository
+
+```bash
+git clone repository-url
+cd Memory-Game-React
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Install Dependencies
 
-```js
-// eslint.config.js
-import react from "eslint-plugin-react";
+```bash
+npm install
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: "18.3" } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs["jsx-runtime"].rules,
-  },
-});
 ```
+
+### Run the Development Server
+
+```bash
+npm run dev
+```
+
+### Future Enhancements
+
+- Add a game timer to track the player's performance.
+- Include a scoring system based on the number of moves.
+- Add difficulty levels with more cards.
+- Improve animations and visual feedback.
