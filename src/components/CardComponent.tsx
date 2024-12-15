@@ -15,12 +15,12 @@ function CardComponent({
 }: CardProps) {
   return (
     <div
-      className={`max-w-xs bg-white border border-gray-200 rounded-lg shadow ${
+      className={`w-60 h-48 bg-white border border-gray-200 rounded-lg shadow ${
         isMatched ? "opacity-50" : ""
       }`}
       onClick={onClick}
     >
-      <div className="aspect-w-4 aspect-h-3">
+      <div className="w-full h-full">
         {isFlipped || isMatched ? (
           <img
             className="w-full h-full object-cover rounded-lg"
@@ -29,7 +29,7 @@ function CardComponent({
           />
         ) : (
           <div className="w-full h-full bg-gray-300 rounded-lg flex items-center justify-center">
-            <p className="text-gray-700 text-xl">?</p>
+            <p className="text-gray-700 text-7xl">?</p>
           </div>
         )}
       </div>
