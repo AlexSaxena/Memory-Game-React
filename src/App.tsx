@@ -2,7 +2,15 @@ import "./App.css";
 import CardComponent from "./components/CardComponent";
 
 function App() {
-  const cardContentArray = [
+  type Card = {
+    cardId: number;
+    imgSrc: string;
+    isFlipped: boolean;
+    isMatched: boolean;
+    onClick: () => void;
+  };
+
+  const cardContentArray: Card[] = [
     {
       cardId: 1,
       imgSrc: "/house.jpg",
@@ -32,7 +40,7 @@ function App() {
     },
   ];
 
-  const shuffleArray = (array: Array<object>) => {
+  const shuffleArray = (array: Card[]) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
