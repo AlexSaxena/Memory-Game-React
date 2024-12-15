@@ -110,6 +110,26 @@ function App() {
   const [cards, setCards] = useState<Card[]>(shuffledArray);
   const [flippedCards, setFlippedCards] = useState<string[]>([]);
 
+  function resetGame() {
+    const reshuffledArray = shuffleArray([
+      ...cardContentArray.map((card, index) => ({
+        ...card,
+        isFlipped: false,
+        isMatched: false,
+        uniqueKey: `${card.cardId}-${index}-1`,
+      })),
+      ...cardContentArray.map((card, index) => ({
+        ...card,
+        isFlipped: false,
+        isMatched: false,
+        uniqueKey: `${card.cardId}-${index}-2`,
+      })),
+    ]);
+
+    setCards(reshuffledArray);
+    setFlippedCards([]);
+  }
+
   return (
     <>
       <main className="min-h-screen flex flex-col items-center justify-start overflow-y-auto">
@@ -134,7 +154,10 @@ function App() {
           </div>
         </div>
         <div className="mb-4">
-          <button className="bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-700">
+          <button
+            onClick={resetGame}
+            className="bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-700"
+          >
             Reset Game
           </button>
         </div>
